@@ -2,10 +2,8 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :doorkeeper_authorize!, only: %i[create], raise: false
 
   def create
-    role_id = Role.find_by(code: 'CLT').id
     user = User.new(email: user_params[:email], password: user_params[:password], name: user_params[:name],
-                    surname: user_params[:surname], login: user_params[:login], birthday: user_params[:birthday],
-                    role_id: role_id)
+                    surname: user_params[:surname], login: user_params[:login], birthday: user_params[:birthday])
 
     client_app = Doorkeeper::Application.find_by(uid: params[:client_id])
 
