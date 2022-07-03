@@ -50,3 +50,5 @@ gem 'devise'
 gem 'doorkeeper'
 gem "sentry-ruby"
 gem "sentry-rails"
+gem 'rswag'
+gem 'rspec-rails'
