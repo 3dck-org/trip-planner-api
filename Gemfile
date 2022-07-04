@@ -52,3 +52,4 @@ gem "sentry-ruby"
 gem "sentry-rails"
 gem 'rswag'
 gem 'rspec-rails'
+gem 'rack-cors', :require => 'rack/cors'
