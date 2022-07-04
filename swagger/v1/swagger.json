@@ -22,12 +22,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "email": {
-                      "type": "string"
-                    },
                     "access_token": {
                       "type": "string"
                     },
@@ -81,6 +75,80 @@
                   "email",
                   "surname",
                   "login"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/token": {
+      "post": {
+        "summary": "Login or Refresh (get token)",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "token_type": {
+                      "type": "string"
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    },
+                    "refresh_token": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string"
+                  },
+                  "client_secret": {
+                    "type": "string"
+                  },
+                  "grant_type": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "client_id",
+                  "client_secret",
+                  "grant_type"
                 ]
               }
             }
