@@ -42,5 +42,9 @@ module TripPlannerApi
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_trip_planner_api_session"}
   end
 end

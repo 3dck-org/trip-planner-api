@@ -5,6 +5,7 @@ ruby "3.0.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
+gem "activerecord", ">= 7.0.3.1"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -53,3 +54,5 @@ gem "sentry-rails"
 gem 'rswag'
 gem 'rspec-rails'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rails_admin'
+gem "sassc-rails"
