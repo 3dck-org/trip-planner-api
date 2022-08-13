@@ -17,7 +17,8 @@ RSpec.describe 'api/v1/users', type: :request do
           name: { type: :string },
           email: { type: :string },
           surname: { type: :string },
-          login: { type: :string }
+          login: { type: :string },
+          role_code: { type: :string }
         },
         required: ['client_id', 'password', 'name', 'email', 'surname', 'login']
       }
@@ -51,7 +52,7 @@ RSpec.describe 'api/v1/users', type: :request do
           grant_type: { type: :string },
           password: { type: :string },
           email: { type: :string },
-          refresh_token: {type: :string}
+          refresh_token: { type: :string }
         },
         required: ['client_id', 'client_secret', 'grant_type']
       }
