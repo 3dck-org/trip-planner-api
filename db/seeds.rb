@@ -8,3 +8,6 @@
 if Doorkeeper::Application.count.zero?
   Doorkeeper::Application.create(name: "Web app", redirect_uri: "", scopes: "")
 end
+
+Role.where(code: 'ADM', name: 'Administrator').first_or_create
+Role.where(code: 'USR', name: 'User').first_or_create
