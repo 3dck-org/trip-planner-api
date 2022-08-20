@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %i[create]
       resources :trips
+      resources :addresses
+      resources :places
     end
   end
   # Defines the root path route ("/")
