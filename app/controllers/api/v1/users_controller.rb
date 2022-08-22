@@ -38,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:email, :password, :name, :surname, :login, :birthday)
+    params.permit(:email, :password, :name, :surname, :login, :birthday, :role_code)
   end
 
   def generate_refresh_token

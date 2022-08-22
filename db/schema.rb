@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_13_092403) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_15_102314) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "buildingNumber"
+    t.string "apartment"
+    t.string "postalCode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_dictionaries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_dictionaries_places", id: false, force: :cascade do |t|
+    t.bigint "category_dictionary_id", null: false
+    t.bigint "place_id", null: false
+  end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.bigint "resource_owner_id"
@@ -40,6 +60,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_13_092403) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "address_id", null: false
+    t.point "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_places_on_address_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -79,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_13_092403) do
   end
 
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "places", "addresses"
   add_foreign_key "trips", "users"
   add_foreign_key "users", "roles"
 end
