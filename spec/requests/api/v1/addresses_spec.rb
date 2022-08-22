@@ -30,7 +30,6 @@ RSpec.describe 'api/v1/addresses', type: :request do
       produces 'application/json'
       consumes "application/json"
       tags 'Addresses'
-      security [Bearer: {}]
 
       parameter name: :address, in: :body, schema: {
         type: :object,
@@ -65,7 +64,6 @@ RSpec.describe 'api/v1/addresses', type: :request do
     get('show address') do
       produces 'application/json'
       tags 'Addresses'
-      security [Bearer: {}]
 
       response(200, 'successful') do
         let(:id) { '123' }
@@ -88,7 +86,6 @@ RSpec.describe 'api/v1/addresses', type: :request do
       produces 'application/json'
       consumes "application/json"
       tags 'Addresses'
-      security [Bearer: {}]
 
       parameter name: :address, in: :body, schema: {
         type: :object,
@@ -119,7 +116,6 @@ RSpec.describe 'api/v1/addresses', type: :request do
     delete('delete address') do
       produces 'application/json'
       tags 'Addresses'
-      security [Bearer: {}]
 
       response(200, 'successful') do
         let(:id) { '123' }

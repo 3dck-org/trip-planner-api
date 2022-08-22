@@ -57,12 +57,6 @@
         "tags": [
           "Addresses"
         ],
-        "security": [
-          {
-            "Bearer": {
-            }
-          }
-        ],
         "parameters": [
 
         ],
@@ -150,12 +144,6 @@
         "tags": [
           "Addresses"
         ],
-        "security": [
-          {
-            "Bearer": {
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "successful",
@@ -198,12 +186,6 @@
         "summary": "update address",
         "tags": [
           "Addresses"
-        ],
-        "security": [
-          {
-            "Bearer": {
-            }
-          }
         ],
         "parameters": [
 
@@ -274,11 +256,402 @@
         "tags": [
           "Addresses"
         ],
-        "security": [
-          {
-            "Bearer": {
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/places": {
+      "get": {
+        "summary": "list places",
+        "tags": [
+          "Places"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "address_id": {
+                        "type": "integer"
+                      },
+                      "point": {
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "string"
+                          },
+                          "y": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      },
+                      "category_dictionaries": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "format": "datetime"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "format": "datetime"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
+        }
+      },
+      "post": {
+        "summary": "create place",
+        "tags": [
+          "Places"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "address_id": {
+                      "type": "integer"
+                    },
+                    "point": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "string"
+                        },
+                        "y": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "category_dictionaries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "address_id": {
+                    "type": "integer"
+                  },
+                  "point": {
+                    "type": "string"
+                  },
+                  "category_names": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "address_id",
+                  "point"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/places/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show place",
+        "tags": [
+          "Places"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "address_id": {
+                      "type": "integer"
+                    },
+                    "point": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "string"
+                        },
+                        "y": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "category_dictionaries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update place",
+        "tags": [
+          "Places"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "address_id": {
+                      "type": "integer"
+                    },
+                    "point": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "string"
+                        },
+                        "y": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "category_dictionaries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "address_id": {
+                    "type": "integer"
+                  },
+                  "point": {
+                    "type": "string"
+                  },
+                  "category_names": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "address_id",
+                  "point"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete place",
+        "tags": [
+          "Places"
         ],
         "responses": {
           "200": {

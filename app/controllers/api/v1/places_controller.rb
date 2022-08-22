@@ -1,4 +1,5 @@
 class Api::V1::PlacesController < ApplicationController
+  before_action :doorkeeper_authorize!
   before_action :set_place, only: %i[ show update destroy ]
 
   # GET /places
@@ -25,6 +26,14 @@ class Api::V1::PlacesController < ApplicationController
       end
     end
 
+    begin
+      coords = place_params[:point].split(',')
+      point = ActiveRecord::Point.new(coords[0], coords[1])
+      @place.point = point
+    rescue StandardError => e
+      render json: "Erorr with point generation for coords: #{place_params[:point]}. #{e.message}",
+             status: :unprocessable_entity
+    end
 
     if @place.save
       render json: @place, include: :category_dictionaries, status: :created
@@ -43,6 +52,16 @@ class Api::V1::PlacesController < ApplicationController
         new_category_dictionaries << category
       end
     end
+
+    begin
+      coords = place_params[:point].split(',')
+      point = ActiveRecord::Point.new(coords[0], coords[1])
+      @place.point = point
+    rescue StandardError => e
+      render json: "Erorr with point generation for coords: #{place_params[:point]}. #{e.message}",
+             status: :unprocessable_entity
+    end
+
     @place.category_dictionaries = new_category_dictionaries
     @place.save!
 
@@ -59,13 +78,14 @@ class Api::V1::PlacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_place
-      @place = Place.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def place_params
-      params.require(:place).permit(:name, :description, :address_id, :point, :category_names)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_place
+    @place = Place.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def place_params
+    params.require(:place).permit(:name, :description, :address_id, :point, :category_names)
+  end
 end
