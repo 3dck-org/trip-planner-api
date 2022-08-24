@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_15_102314) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_144422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_102314) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trip_place_infos", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.bigint "place_id", null: false
+    t.string "comment"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_trip_place_infos_on_place_id"
+    t.index ["trip_id"], name: "index_trip_place_infos_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -110,6 +121,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_102314) do
 
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "places", "addresses"
+  add_foreign_key "trip_place_infos", "places"
+  add_foreign_key "trip_place_infos", "trips"
   add_foreign_key "trips", "users"
   add_foreign_key "users", "roles"
 end
