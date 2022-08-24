@@ -660,6 +660,267 @@
         }
       }
     },
+    "/api/v1/trip_place_infos": {
+      "get": {
+        "summary": "list trip_place_infos",
+        "tags": [
+          "TripPlaceInfos"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "place_id": {
+                        "type": "integer"
+                      },
+                      "trip_id": {
+                        "type": "integer"
+                      },
+                      "comment": {
+                        "type": "string"
+                      },
+                      "order": {
+                        "type": "integer"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create trip_place_info",
+        "tags": [
+          "TripPlaceInfos"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "place_id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "place_id": {
+                    "type": "integer"
+                  },
+                  "trip_id": {
+                    "type": "integer"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "order": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "place_id",
+                  "trip_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trip_place_infos/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show trip_place_info",
+        "tags": [
+          "TripPlaceInfos"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "place_id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update trip_place_info",
+        "tags": [
+          "TripPlaceInfos"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "place_id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "place_id": {
+                    "type": "integer"
+                  },
+                  "trip_id": {
+                    "type": "integer"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "order": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "place_id",
+                  "trip_id"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete trip_place_info",
+        "tags": [
+          "TripPlaceInfos"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/api/v1/trips": {
       "get": {
         "summary": "list trips",

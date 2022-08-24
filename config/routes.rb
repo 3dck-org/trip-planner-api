@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :trips
       resources :addresses
       resources :places
+      resources :trip_place_infos
     end
   end
   # Defines the root path route ("/")
