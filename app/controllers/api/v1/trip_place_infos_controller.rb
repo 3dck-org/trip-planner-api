@@ -1,4 +1,5 @@
 class Api::V1::TripPlaceInfosController < ApplicationController
+  before_action :doorkeeper_authorize!
   before_action :set_trip_place_info, only: %i[ show update destroy ]
 
   # GET /trip_place_infos
