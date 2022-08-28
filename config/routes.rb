@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
       resources :addresses
       resources :places
       resources :trip_place_infos
+      resources :journeys, except: :destroy
     end
   end
   # Defines the root path route ("/")

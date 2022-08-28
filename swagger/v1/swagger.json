@@ -263,6 +263,289 @@
         }
       }
     },
+    "/api/v1/journeys": {
+      "get": {
+        "summary": "list journeys",
+        "tags": [
+          "Journeys"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "trip_id": {
+                        "type": "integer"
+                      },
+                      "user_id": {
+                        "type": "integer"
+                      },
+                      "completed": {
+                        "type": "string"
+                      },
+                      "distance": {
+                        "type": "string",
+                        "format": "float"
+                      },
+                      "start_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      },
+                      "end_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "datetime"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create journey",
+        "tags": [
+          "Journeys"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "completed": {
+                      "type": "string"
+                    },
+                    "distance": {
+                      "type": "string",
+                      "format": "float"
+                    },
+                    "start_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "end_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "trip_id": {
+                    "type": "integer"
+                  },
+                  "user_id": {
+                    "type": "integer"
+                  },
+                  "start_at": {
+                    "type": "string",
+                    "format": "datetime"
+                  }
+                },
+                "required": [
+                  "trip_id",
+                  "user_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/journeys/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show journey",
+        "tags": [
+          "Journeys"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "completed": {
+                      "type": "string"
+                    },
+                    "distance": {
+                      "type": "string",
+                      "format": "float"
+                    },
+                    "start_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "end_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update journey",
+        "tags": [
+          "Journeys"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "completed": {
+                      "type": "string"
+                    },
+                    "distance": {
+                      "type": "string",
+                      "format": "float"
+                    },
+                    "start_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "end_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "completed": {
+                    "type": "string"
+                  },
+                  "distance": {
+                    "type": "string",
+                    "format": "float"
+                  },
+                  "start_at": {
+                    "type": "string",
+                    "format": "datetime"
+                  },
+                  "end_at": {
+                    "type": "string",
+                    "format": "datetime"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/places": {
       "get": {
         "summary": "list places",
