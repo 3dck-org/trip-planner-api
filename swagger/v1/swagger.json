@@ -1549,9 +1549,6 @@
                   },
                   "login": {
                     "type": "string"
-                  },
-                  "role_code": {
-                    "type": "string"
                   }
                 },
                 "required": [

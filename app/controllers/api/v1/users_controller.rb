@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :doorkeeper_authorize!, only: %i[create], raise: false
 
   def create
-    role = Role.find_by(code: user_params[:role_code]) || Role.find_by(code: 'USR')
+    role = Role.find_by(code: 'USR')
     user = User.new(email: user_params[:email], password: user_params[:password], name: user_params[:name],
                     surname: user_params[:surname], login: user_params[:login], birthday: user_params[:birthday],
                     role: role)
@@ -38,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:email, :password, :name, :surname, :login, :birthday, :role_code)
+    params.permit(:email, :password, :name, :surname, :login, :birthday)
   end
 
   def generate_refresh_token
