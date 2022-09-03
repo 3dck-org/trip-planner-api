@@ -37,10 +37,9 @@ RSpec.describe 'api/v1/journeys', type: :request do
         type: :object,
         properties: {
           trip_id: { type: :integer },
-          user_id: { type: :integer },
           start_at: { type: :string, format: :datetime }
         },
-        required: ['trip_id', 'user_id']
+        required: ['trip_id']
       }
 
       response(200, 'successful') do

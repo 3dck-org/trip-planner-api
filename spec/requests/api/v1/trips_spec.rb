@@ -20,7 +20,49 @@ RSpec.describe 'api/v1/trips', type: :request do
                    distance: { type: :string, format: :float },
                    duration: { type: :integer },
                    created_at: { type: :string, format: :datetime },
-                   updated_at: { type: :string, format: :datetime }
+                   updated_at: { type: :string, format: :datetime },
+                   trip_place_infos: {
+                     type: :array,
+                     items: {
+                       type: :object,
+                       properties: {
+                         place_id: { type: :integer },
+                         trip_id: { type: :integer },
+                         comment: { type: :string },
+                         order: { type: :integer },
+                         place: {
+                           type: :object,
+                           properties: {
+                             id: { type: :integer },
+                             name: { type: :string },
+                             description: { type: :string },
+                             address_id: { type: :integer },
+                             point: {
+                               type: :object,
+                               properties: {
+                                 x: { type: :string },
+                                 y: { type: :string }
+                               }
+                             },
+                             created_at: { type: :string, format: :datetime },
+                             updated_at: { type: :string, format: :datetime },
+                             address: {
+                               type: :object,
+                               properties: {
+                                 id: { type: :integer },
+                                 street: { type: :string },
+                                 buildingNumber: { type: :string },
+                                 apartment: { type: :string },
+                                 postalCode: { type: :string },
+                                 created_at: { type: :string, format: :datetime },
+                                 updated_at: { type: :string, format: :datetime }
+                               }
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
                  }
                }
         run_test!
@@ -54,7 +96,49 @@ RSpec.describe 'api/v1/trips', type: :request do
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
                  created_at: { type: :string, format: :datetime },
-                 updated_at: { type: :string, format: :datetime }
+                 updated_at: { type: :string, format: :datetime },
+                 trip_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       place_id: { type: :integer },
+                       trip_id: { type: :integer },
+                       comment: { type: :string },
+                       order: { type: :integer },
+                       place: {
+                         type: :object,
+                         properties: {
+                           id: { type: :integer },
+                           name: { type: :string },
+                           description: { type: :string },
+                           address_id: { type: :integer },
+                           point: {
+                             type: :object,
+                             properties: {
+                               x: { type: :string },
+                               y: { type: :string }
+                             }
+                           },
+                           created_at: { type: :string, format: :datetime },
+                           updated_at: { type: :string, format: :datetime },
+                           address: {
+                             type: :object,
+                             properties: {
+                               id: { type: :integer },
+                               street: { type: :string },
+                               buildingNumber: { type: :string },
+                               apartment: { type: :string },
+                               postalCode: { type: :string },
+                               created_at: { type: :string, format: :datetime },
+                               updated_at: { type: :string, format: :datetime }
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
                }
         run_test!
       end
@@ -80,7 +164,49 @@ RSpec.describe 'api/v1/trips', type: :request do
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
                  created_at: { type: :string, format: :datetime },
-                 updated_at: { type: :string, format: :datetime }
+                 updated_at: { type: :string, format: :datetime },
+                 trip_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       place_id: { type: :integer },
+                       trip_id: { type: :integer },
+                       comment: { type: :string },
+                       order: { type: :integer },
+                       place: {
+                         type: :object,
+                         properties: {
+                           id: { type: :integer },
+                           name: { type: :string },
+                           description: { type: :string },
+                           address_id: { type: :integer },
+                           point: {
+                             type: :object,
+                             properties: {
+                               x: { type: :string },
+                               y: { type: :string }
+                             }
+                           },
+                           created_at: { type: :string, format: :datetime },
+                           updated_at: { type: :string, format: :datetime },
+                           address: {
+                             type: :object,
+                             properties: {
+                               id: { type: :integer },
+                               street: { type: :string },
+                               buildingNumber: { type: :string },
+                               apartment: { type: :string },
+                               postalCode: { type: :string },
+                               created_at: { type: :string, format: :datetime },
+                               updated_at: { type: :string, format: :datetime }
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
                }
         run_test!
       end
@@ -113,7 +239,49 @@ RSpec.describe 'api/v1/trips', type: :request do
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
                  created_at: { type: :string, format: :datetime },
-                 updated_at: { type: :string, format: :datetime }
+                 updated_at: { type: :string, format: :datetime },
+                 trip_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       place_id: { type: :integer },
+                       trip_id: { type: :integer },
+                       comment: { type: :string },
+                       order: { type: :integer },
+                       place: {
+                         type: :object,
+                         properties: {
+                           id: { type: :integer },
+                           name: { type: :string },
+                           description: { type: :string },
+                           address_id: { type: :integer },
+                           point: {
+                             type: :object,
+                             properties: {
+                               x: { type: :string },
+                               y: { type: :string }
+                             }
+                           },
+                           created_at: { type: :string, format: :datetime },
+                           updated_at: { type: :string, format: :datetime },
+                           address: {
+                             type: :object,
+                             properties: {
+                               id: { type: :integer },
+                               street: { type: :string },
+                               buildingNumber: { type: :string },
+                               apartment: { type: :string },
+                               postalCode: { type: :string },
+                               created_at: { type: :string, format: :datetime },
+                               updated_at: { type: :string, format: :datetime }
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
                }
         run_test!
       end
