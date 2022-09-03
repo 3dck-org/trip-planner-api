@@ -17,6 +17,7 @@ class Api::V1::JourneysController < ApplicationController
   # POST /journeys
   def create
     @journey = Journey.new(journey_params)
+    @journey.user_id = doorkeeper_token.resource_owner_id
 
     if @journey.save
       render json: @journey, status: :created
@@ -34,19 +35,14 @@ class Api::V1::JourneysController < ApplicationController
     end
   end
 
-  # # DELETE /journeys/1
-  # def destroy
-  #   @journey.destroy
-  # end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_journey
-      @journey = Journey.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def journey_params
-      params.require(:journey).permit(:distance, :start_at, :end_at, :completed, :trip_id, :user_id)
-    end
+  def set_journey
+    @journey = Journey.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def journey_params
+    params.require(:journey).permit(:distance, :start_at, :end_at, :completed, :trip_id)
+  end
 end
