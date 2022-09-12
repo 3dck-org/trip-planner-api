@@ -1321,6 +1321,28 @@
                                       "format": "datetime"
                                     }
                                   }
+                                },
+                                "category_dictionaries": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "created_at": {
+                                        "type": "string",
+                                        "format": "datetime"
+                                      },
+                                      "updated_at": {
+                                        "type": "string",
+                                        "format": "datetime"
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -1454,6 +1476,28 @@
                                   "updated_at": {
                                     "type": "string",
                                     "format": "datetime"
+                                  }
+                                }
+                              },
+                              "category_dictionaries": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "created_at": {
+                                      "type": "string",
+                                      "format": "datetime"
+                                    },
+                                    "updated_at": {
+                                      "type": "string",
+                                      "format": "datetime"
+                                    }
                                   }
                                 }
                               }
@@ -1633,6 +1677,28 @@
                                     "type": "string",
                                     "format": "datetime"
                                   }
+                                },
+                                "category_dictionaries": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "created_at": {
+                                        "type": "string",
+                                        "format": "datetime"
+                                      },
+                                      "updated_at": {
+                                        "type": "string",
+                                        "format": "datetime"
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -1766,6 +1832,28 @@
                                   "updated_at": {
                                     "type": "string",
                                     "format": "datetime"
+                                  }
+                                }
+                              },
+                              "category_dictionaries": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "created_at": {
+                                      "type": "string",
+                                      "format": "datetime"
+                                    },
+                                    "updated_at": {
+                                      "type": "string",
+                                      "format": "datetime"
+                                    }
                                   }
                                 }
                               }
