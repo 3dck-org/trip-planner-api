@@ -6,12 +6,12 @@ class Api::V1::TripsController < ApplicationController
   def index
     @trips = Trip.all
 
-    render json: @trips, include: { trip_place_infos: { include: { place: { include: :address } } } }
+    render json: @trips, include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }
   end
 
   # GET /api/v1/trips/1
   def show
-    render json: @trip, include: { trip_place_infos: { include: { place: { include: :address } } } }
+    render json: @trip, include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }
   end
 
   # POST /api/v1/trips
@@ -19,7 +19,7 @@ class Api::V1::TripsController < ApplicationController
     @trip = Trip.new(trip_params)
 
     if @trip.save
-      render json: @trip, status: :created, include: { trip_place_infos: { include: { place: { include: :address } } } }
+      render json: @trip, status: :created, include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }
     else
       render json: @trip.errors, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Api::V1::TripsController < ApplicationController
   # PATCH/PUT /api/v1/trips/1
   def update
     if @trip.update(trip_params)
-      render json: @trip, include: { trip_place_infos: { include: { place: { include: :address } } } }
+      render json: @trip, include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }
     else
       render json: @trip.errors, status: :unprocessable_entity
     end

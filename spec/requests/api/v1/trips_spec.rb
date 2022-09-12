@@ -57,6 +57,18 @@ RSpec.describe 'api/v1/trips', type: :request do
                                  created_at: { type: :string, format: :datetime },
                                  updated_at: { type: :string, format: :datetime }
                                }
+                             },
+                             category_dictionaries: {
+                               type: :array,
+                               items: {
+                                 type: :object,
+                                 properties: {
+                                   id: { type: :integer },
+                                   name: { type: :string },
+                                   created_at: { type: :string, format: :datetime },
+                                   updated_at: { type: :string, format: :datetime }
+                                 }
+                               }
                              }
                            }
                          }
@@ -133,6 +145,18 @@ RSpec.describe 'api/v1/trips', type: :request do
                                created_at: { type: :string, format: :datetime },
                                updated_at: { type: :string, format: :datetime }
                              }
+                           },
+                           category_dictionaries: {
+                             type: :array,
+                             items: {
+                               type: :object,
+                               properties: {
+                                 id: { type: :integer },
+                                 name: { type: :string },
+                                 created_at: { type: :string, format: :datetime },
+                                 updated_at: { type: :string, format: :datetime }
+                               }
+                             }
                            }
                          }
                        }
@@ -200,6 +224,18 @@ RSpec.describe 'api/v1/trips', type: :request do
                                postalCode: { type: :string },
                                created_at: { type: :string, format: :datetime },
                                updated_at: { type: :string, format: :datetime }
+                             },
+                             category_dictionaries: {
+                               type: :array,
+                               items: {
+                                 type: :object,
+                                 properties: {
+                                   id: { type: :integer },
+                                   name: { type: :string },
+                                   created_at: { type: :string, format: :datetime },
+                                   updated_at: { type: :string, format: :datetime }
+                                 }
+                               }
                              }
                            }
                          }
@@ -275,6 +311,18 @@ RSpec.describe 'api/v1/trips', type: :request do
                                postalCode: { type: :string },
                                created_at: { type: :string, format: :datetime },
                                updated_at: { type: :string, format: :datetime }
+                             }
+                           },
+                           category_dictionaries: {
+                             type: :array,
+                             items: {
+                               type: :object,
+                               properties: {
+                                 id: { type: :integer },
+                                 name: { type: :string },
+                                 created_at: { type: :string, format: :datetime },
+                                 updated_at: { type: :string, format: :datetime }
+                               }
                              }
                            }
                          }
