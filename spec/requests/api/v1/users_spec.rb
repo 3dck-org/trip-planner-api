@@ -17,7 +17,8 @@ RSpec.describe 'api/v1/users', type: :request do
           name: { type: :string },
           email: { type: :string },
           surname: { type: :string },
-          login: { type: :string }
+          login: { type: :string },
+          image_url: { type: :string }
         },
         required: ['client_id', 'password', 'name', 'email', 'surname', 'login']
       }

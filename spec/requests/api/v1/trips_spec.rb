@@ -19,6 +19,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                    description: { type: :string },
                    distance: { type: :string, format: :float },
                    duration: { type: :integer },
+                   image_url: { type: :string },
                    created_at: { type: :string, format: :datetime },
                    updated_at: { type: :string, format: :datetime },
                    trip_place_infos: {
@@ -93,7 +94,8 @@ RSpec.describe 'api/v1/trips', type: :request do
           name: { type: :string },
           description: { type: :string },
           distance: { type: :string, format: :float },
-          duration: { type: :integer }
+          duration: { type: :integer },
+          image_url: { type: :string }
         },
         required: ['name', 'description', 'distance', 'duration', 'user_id']
       }
@@ -107,6 +109,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                  description: { type: :string },
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
+                 image_url: { type: :string },
                  created_at: { type: :string, format: :datetime },
                  updated_at: { type: :string, format: :datetime },
                  trip_place_infos: {
@@ -187,6 +190,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                  description: { type: :string },
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
+                 image_url: { type: :string },
                  created_at: { type: :string, format: :datetime },
                  updated_at: { type: :string, format: :datetime },
                  trip_place_infos: {
@@ -260,7 +264,8 @@ RSpec.describe 'api/v1/trips', type: :request do
           name: { type: :string },
           description: { type: :string },
           distance: { type: :string, format: :float },
-          duration: { type: :integer }
+          duration: { type: :integer },
+          image_url: { type: :string }
         }
       }
 
@@ -274,6 +279,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                  description: { type: :string },
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
+                 image_url: { type: :string },
                  created_at: { type: :string, format: :datetime },
                  updated_at: { type: :string, format: :datetime },
                  trip_place_infos: {

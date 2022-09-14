@@ -4,7 +4,7 @@ class Api::V1::JourneysController < ApplicationController
 
   # GET /journeys
   def index
-    @journeys = Journey.all
+    @journeys = Journey.where(user_id: doorkeeper_token.resource_owner_id)
 
     render json: @journeys
   end
