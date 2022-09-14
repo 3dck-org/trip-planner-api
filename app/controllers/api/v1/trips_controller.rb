@@ -48,6 +48,6 @@ class Api::V1::TripsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trip_params
-    params.require(:trip).permit(:name, :description, :distance, :duration, :user_id)
+    params.require(:trip).permit(:name, :description, :distance, :duration, :user_id, :image_url)
   end
 end

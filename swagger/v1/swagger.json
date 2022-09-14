@@ -1235,6 +1235,9 @@
                       "duration": {
                         "type": "integer"
                       },
+                      "image_url": {
+                        "type": "string"
+                      },
                       "created_at": {
                         "type": "string",
                         "format": "datetime"
@@ -1392,6 +1395,9 @@
                     "duration": {
                       "type": "integer"
                     },
+                    "image_url": {
+                      "type": "string"
+                    },
                     "created_at": {
                       "type": "string",
                       "format": "datetime"
@@ -1533,6 +1539,9 @@
                   },
                   "duration": {
                     "type": "integer"
+                  },
+                  "image_url": {
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -1591,6 +1600,9 @@
                     },
                     "duration": {
                       "type": "integer"
+                    },
+                    "image_url": {
+                      "type": "string"
                     },
                     "created_at": {
                       "type": "string",
@@ -1748,6 +1760,9 @@
                     "duration": {
                       "type": "integer"
                     },
+                    "image_url": {
+                      "type": "string"
+                    },
                     "created_at": {
                       "type": "string",
                       "format": "datetime"
@@ -1889,6 +1904,9 @@
                   },
                   "duration": {
                     "type": "integer"
+                  },
+                  "image_url": {
+                    "type": "string"
                   }
                 }
               }
@@ -1968,6 +1986,9 @@
                     "type": "string"
                   },
                   "login": {
+                    "type": "string"
+                  },
+                  "image_url": {
                     "type": "string"
                   }
                 },
