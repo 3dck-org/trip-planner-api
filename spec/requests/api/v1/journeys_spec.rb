@@ -120,4 +120,28 @@ RSpec.describe 'api/v1/journeys', type: :request do
       end
     end
   end
+
+  path '/api/v1/current_journey' do
+
+    get('current journey of the user') do
+      produces 'application/json'
+      tags 'Journeys'
+
+      response(200, 'successful') do
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 trip_id: { type: :integer },
+                 user_id: { type: :integer },
+                 completed: { type: :string },
+                 distance: { type: :string, format: :float },
+                 start_at: { type: :string, format: :datetime },
+                 end_at: { type: :string, format: :datetime },
+                 created_at: { type: :string, format: :datetime },
+                 updated_at: { type: :string, format: :datetime }
+               }
+        run_test!
+      end
+    end
+  end
 end

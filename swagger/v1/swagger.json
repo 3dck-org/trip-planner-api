@@ -542,6 +542,60 @@
         }
       }
     },
+    "/api/v1/current_journey": {
+      "get": {
+        "summary": "current journey of the user",
+        "tags": [
+          "Journeys"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "trip_id": {
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "completed": {
+                      "type": "string"
+                    },
+                    "distance": {
+                      "type": "string",
+                      "format": "float"
+                    },
+                    "start_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "end_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/places": {
       "get": {
         "summary": "list places",
