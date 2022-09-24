@@ -38,7 +38,7 @@ class Api::V1::PlacesController < ApplicationController
     if @place.save
       render json: @place, include: :category_dictionaries, status: :created
     else
-      render json: @place.errors, status: :unprocessable_entity
+      render json: { error: @place.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -58,7 +58,7 @@ class Api::V1::PlacesController < ApplicationController
       point = ActiveRecord::Point.new(coords[0], coords[1])
       @place.point = point
     rescue StandardError => e
-      render json: "Erorr with point generation for coords: #{place_params[:point]}. #{e.message}",
+      render json: { error: ["Error with point generation for coords: #{place_params[:point]}. #{e.message}"] },
              status: :unprocessable_entity
     end
 
@@ -68,7 +68,7 @@ class Api::V1::PlacesController < ApplicationController
     if @place.update(place_params.except(:category_names))
       render json: @place, include: :category_dictionaries
     else
-      render json: @place.errors, status: :unprocessable_entity
+      render json: { error: @place.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

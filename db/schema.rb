@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_143107) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_100727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_143107) do
     t.float "distance", default: 0.0
     t.datetime "start_at"
     t.datetime "end_at"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.bigint "trip_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false

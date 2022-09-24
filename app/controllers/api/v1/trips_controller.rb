@@ -21,7 +21,7 @@ class Api::V1::TripsController < ApplicationController
     if @trip.save
       render json: @trip, status: :created, include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }
     else
-      render json: @trip.errors, status: :unprocessable_entity
+      render json: { error: @trip.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V1::TripsController < ApplicationController
     if @trip.update(trip_params)
       render json: @trip, include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }
     else
-      render json: @trip.errors, status: :unprocessable_entity
+      render json: { error: @trip.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
