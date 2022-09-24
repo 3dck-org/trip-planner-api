@@ -6,7 +6,7 @@ class Journey < ApplicationRecord
 
   def only_one_uncompleted
     if user.journeys.where(completed: [nil, false]).present?
-      errors.add(:completed, "User can have only one uncompleted journey.")
+      errors.add(:user_id, "User can have only one uncompleted journey.")
     end
   end
 end

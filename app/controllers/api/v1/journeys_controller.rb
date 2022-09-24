@@ -14,6 +14,12 @@ class Api::V1::JourneysController < ApplicationController
     render json: @journey
   end
 
+  def current_journey
+    @journey = Journey.find_by(user_id: doorkeeper_token.resource_owner_id, completed: false)
+
+    render json: @journey
+  end
+
   # POST /journeys
   def create
     @journey = Journey.new(journey_params)
@@ -22,7 +28,7 @@ class Api::V1::JourneysController < ApplicationController
     if @journey.save
       render json: @journey, status: :created
     else
-      render json: @journey.errors, status: :unprocessable_entity
+      render json: { error: @journey.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +37,7 @@ class Api::V1::JourneysController < ApplicationController
     if @journey.update(journey_params)
       render json: @journey
     else
-      render json: @journey.errors, status: :unprocessable_entity
+      render json: { error: @journey.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
