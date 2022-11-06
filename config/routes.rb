@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :trip_place_infos
       resources :journeys, except: :destroy
       get 'current_journey', to: 'journeys#current_journey'
+      get 'current_user', to: 'users#current_user'
     end
   end
   # Defines the root path route ("/")
