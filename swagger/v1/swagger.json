@@ -1260,6 +1260,16 @@
         "tags": [
           "Trips"
         ],
+        "parameters": [
+          {
+            "name": "favorite_only",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful",
@@ -1290,6 +1300,9 @@
                         "type": "integer"
                       },
                       "image_url": {
+                        "type": "string"
+                      },
+                      "favorite": {
                         "type": "string"
                       },
                       "created_at": {
@@ -1450,6 +1463,9 @@
                       "type": "integer"
                     },
                     "image_url": {
+                      "type": "string"
+                    },
+                    "favorite": {
                       "type": "string"
                     },
                     "created_at": {
@@ -1658,6 +1674,9 @@
                     "image_url": {
                       "type": "string"
                     },
+                    "favorite": {
+                      "type": "string"
+                    },
                     "created_at": {
                       "type": "string",
                       "format": "datetime"
@@ -1780,7 +1799,7 @@
         }
       },
       "put": {
-        "summary": "update trip",
+        "summary": "remove trip from current users favorites",
         "tags": [
           "Trips"
         ],
@@ -1815,6 +1834,9 @@
                       "type": "integer"
                     },
                     "image_url": {
+                      "type": "string"
+                    },
+                    "favorite": {
                       "type": "string"
                     },
                     "created_at": {
@@ -1930,6 +1952,9 @@
                           }
                         }
                       }
+                    },
+                    "success": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1976,6 +2001,56 @@
         "responses": {
           "200": {
             "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/trips/{id}/add_to_favorite": {
+      "put": {
+        "summary": "add trip to current users favorites",
+        "tags": [
+          "Trips"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trips/{id}/remove_from_favorite": {
+      "put": {
+        "summary": "remove trip from current users favorites",
+        "tags": [
+          "Trips"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

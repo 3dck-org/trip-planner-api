@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: %i[create]
-      resources :trips
+      resources :trips do
+        member do
+          put 'add_to_favorite', to: 'trips#add_to_favorite'
+          put 'remove_from_favorite', to: 'trips#remove_from_favorite'
+        end
+      end
       resources :addresses
       resources :places
       resources :trip_place_infos
