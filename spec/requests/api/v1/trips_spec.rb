@@ -8,6 +8,8 @@ RSpec.describe 'api/v1/trips', type: :request do
       produces 'application/json'
       tags 'Trips'
 
+      parameter name: :favorite_only, in: :path, type: :string
+
       response(200, 'successful') do
         schema type: :array,
                items: {
@@ -20,6 +22,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                    distance: { type: :string, format: :float },
                    duration: { type: :integer },
                    image_url: { type: :string },
+                   favorite: { type: :string },
                    created_at: { type: :string, format: :datetime },
                    updated_at: { type: :string, format: :datetime },
                    trip_place_infos: {
@@ -110,6 +113,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
                  image_url: { type: :string },
+                 favorite: { type: :string },
                  created_at: { type: :string, format: :datetime },
                  updated_at: { type: :string, format: :datetime },
                  trip_place_infos: {
@@ -191,6 +195,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
                  image_url: { type: :string },
+                 favorite: { type: :string },
                  created_at: { type: :string, format: :datetime },
                  updated_at: { type: :string, format: :datetime },
                  trip_place_infos: {
@@ -280,6 +285,7 @@ RSpec.describe 'api/v1/trips', type: :request do
                  distance: { type: :string, format: :float },
                  duration: { type: :integer },
                  image_url: { type: :string },
+                 favorite: { type: :string },
                  created_at: { type: :string, format: :datetime },
                  updated_at: { type: :string, format: :datetime },
                  trip_place_infos: {
@@ -351,5 +357,55 @@ RSpec.describe 'api/v1/trips', type: :request do
         run_test!
       end
     end
+
+
+
+    put('remove trip from current users favorites') do
+      produces 'application/json'
+      tags 'Trips'
+
+      response(200, 'successful') do
+        let(:id) { '123' }
+        schema type: :object,
+               properties: {
+                 success: { type: :string }
+               }
+        run_test!
+      end
+    end
   end
+
+  path '/api/v1/trips/{id}/add_to_favorite' do
+    put('add trip to current users favorites') do
+      produces 'application/json'
+      tags 'Trips'
+
+      response(200, 'successful') do
+        let(:id) { '123' }
+        schema type: :object,
+               properties: {
+                 success: { type: :string }
+               }
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/trips/{id}/remove_from_favorite' do
+    put('remove trip from current users favorites') do
+      produces 'application/json'
+      tags 'Trips'
+
+      response(200, 'successful') do
+        let(:id) { '123' }
+        schema type: :object,
+               properties: {
+                 success: { type: :string }
+               }
+        run_test!
+      end
+    end
+  end
+
+
 end

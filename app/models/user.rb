@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :role
   has_many :journeys
+  has_many :trips, through: :user_favorite_trips
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -23,6 +23,9 @@ class Api::V1::JourneysController < ApplicationController
   # POST /journeys
   def create
     @journey = Journey.new(journey_params)
+    if @journey.start_at.nil?
+      @journey.start_at = DateTime.now
+    end
     @journey.user_id = doorkeeper_token.resource_owner_id
 
     if @journey.save
