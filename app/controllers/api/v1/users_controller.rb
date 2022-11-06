@@ -35,6 +35,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def current_user
+    @user = User.find(doorkeeper_token.resource_owner_id) rescue nil
+
+    if @user
+      render json: @user
+    else
+      render(json: { error: 'User not authorized' }, status: 403)
+    end
+  end
+
   private
 
   def user_params
