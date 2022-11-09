@@ -21,7 +21,7 @@ class  Api::V1::AddressesController < ApplicationController
     if @address.save
       render json: @address, status: :created
     else
-      render json: { error: @address.errors.full_messages }, status: :unprocessable_entity
+      render json: { error_message: @address.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class  Api::V1::AddressesController < ApplicationController
     if @address.update(address_params)
       render json: @address
     else
-      render json: { error: @address.errors.full_messages }, status: :unprocessable_entity
+      render json: { error_message: @address.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
   end
 

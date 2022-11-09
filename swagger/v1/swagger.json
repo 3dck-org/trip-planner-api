@@ -1799,7 +1799,7 @@
         }
       },
       "put": {
-        "summary": "remove trip from current users favorites",
+        "summary": "update trip",
         "tags": [
           "Trips"
         ],
@@ -1952,9 +1952,6 @@
                           }
                         }
                       }
-                    },
-                    "success": {
-                      "type": "string"
                     }
                   }
                 }
@@ -1986,6 +1983,9 @@
                   },
                   "image_url": {
                     "type": "string"
+                  },
+                  "favorite": {
+                    "type": "string"
                   }
                 }
               }
@@ -2001,56 +2001,6 @@
         "responses": {
           "200": {
             "description": "successful"
-          }
-        }
-      }
-    },
-    "/api/v1/trips/{id}/add_to_favorite": {
-      "put": {
-        "summary": "add trip to current users favorites",
-        "tags": [
-          "Trips"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/trips/{id}/remove_from_favorite": {
-      "put": {
-        "summary": "remove trip from current users favorites",
-        "tags": [
-          "Trips"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       }

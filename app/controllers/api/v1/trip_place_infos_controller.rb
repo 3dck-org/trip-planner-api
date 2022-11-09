@@ -21,7 +21,7 @@ class Api::V1::TripPlaceInfosController < ApplicationController
     if @trip_place_info.save
       render json: @trip_place_info, status: :created
     else
-      render json: { error: @trip_place_info.errors.full_messages }, status: :unprocessable_entity
+      render json: { error_message: @trip_place_info.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V1::TripPlaceInfosController < ApplicationController
     if @trip_place_info.update(trip_place_info_params)
       render json: @trip_place_info
     else
-      render json: { error: @trip_place_info.errors.full_messages }, status: :unprocessable_entity
+      render json: { error_message: @trip_place_info.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
   end
 

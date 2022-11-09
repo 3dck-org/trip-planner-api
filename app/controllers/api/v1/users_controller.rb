@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
 
     client_app = Doorkeeper::Application.find_by(uid: params[:client_id])
 
-    return render(json: { error: 'Invalid client ID' }, status: 403) unless client_app
+    return render(json: { error_message: 'Invalid client ID', error_code: 403 }, status: 403) unless client_app
 
     if user.save
       # create access token for the user
@@ -31,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
         created_at: access_token.created_at.to_time.to_i
       })
     else
-      render(json: { error: user.errors.full_messages }, status: 422)
+      render(json: { error_message: user.errors.full_messages, error_code: 422 }, status: 422)
     end
   end
 
@@ -41,7 +41,7 @@ class Api::V1::UsersController < ApplicationController
     if @user
       render json: @user
     else
-      render(json: { error: 'User not authorized' }, status: 403)
+      render(json: { error_message: 'User not authorized', error_code: 403 }, status: 403)
     end
   end
 

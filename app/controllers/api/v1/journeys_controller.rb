@@ -31,7 +31,7 @@ class Api::V1::JourneysController < ApplicationController
     if @journey.save
       render json: @journey, status: :created
     else
-      render json: { error: @journey.errors.full_messages }, status: :unprocessable_entity
+      render json: { error_message: @journey.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +40,7 @@ class Api::V1::JourneysController < ApplicationController
     if @journey.update(journey_params)
       render json: @journey
     else
-      render json: { error: @journey.errors.full_messages }, status: :unprocessable_entity
+      render json: { error_message: @journey.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
   end
 
