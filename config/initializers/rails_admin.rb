@@ -1,3 +1,7 @@
+class RailsAdmin::Config::Fields::Types::Point < RailsAdmin::Config::Fields::Base
+  RailsAdmin::Config::Fields::Types::register(self)
+end
+
 RailsAdmin.config do |config|
   config.asset_source = :sprockets
 
