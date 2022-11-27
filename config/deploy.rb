@@ -15,7 +15,20 @@ set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+namespace :deploy do
+  desc 'Runs rake db:seed for SeedMigrations data'
+  task :seed => [:set_rails_env] do
+    on primary fetch(:migration_role) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "db:seed"
+        end
+      end
+    end
+  end
 
+  after 'deploy:migrate', 'deploy:seed'
+end
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
 
