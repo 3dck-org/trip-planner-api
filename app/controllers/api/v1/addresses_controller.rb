@@ -48,6 +48,6 @@ class  Api::V1::AddressesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def address_params
-    params.require(:address).permit(:street, :buildingNumber, :apartment, :postalCode)
+    params.require(:address).permit(:country, :city, :street, :buildingNumber, :apartment, :postalCode)
   end
 end

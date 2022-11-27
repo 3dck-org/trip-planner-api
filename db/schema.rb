@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_06_124139) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_27_140413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_06_124139) do
     t.string "postalCode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "country"
   end
 
   create_table "category_dictionaries", force: :cascade do |t|

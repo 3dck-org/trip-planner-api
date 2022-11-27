@@ -14,6 +14,8 @@ RSpec.describe 'api/v1/addresses', type: :request do
                  type: :object,
                  properties: {
                    id: { type: :integer },
+                   country: { type: :string },
+                   city: { type: :string },
                    street: { type: :string },
                    buildingNumber: { type: :string },
                    apartment: { type: :string },
@@ -34,6 +36,8 @@ RSpec.describe 'api/v1/addresses', type: :request do
       parameter name: :address, in: :body, schema: {
         type: :object,
         properties: {
+          country: { type: :string },
+          city: { type: :string },
           street: { type: :string },
           buildingNumber: { type: :string },
           apartment: { type: :string },
@@ -46,6 +50,8 @@ RSpec.describe 'api/v1/addresses', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
+                 country: { type: :string },
+                 city: { type: :string },
                  street: { type: :string },
                  buildingNumber: { type: :string },
                  apartment: { type: :string },
@@ -71,6 +77,8 @@ RSpec.describe 'api/v1/addresses', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
+                 country: { type: :string },
+                 city: { type: :string },
                  street: { type: :string },
                  buildingNumber: { type: :string },
                  apartment: { type: :string },
@@ -90,6 +98,8 @@ RSpec.describe 'api/v1/addresses', type: :request do
       parameter name: :address, in: :body, schema: {
         type: :object,
         properties: {
+          country: { type: :string },
+          city: { type: :string },
           street: { type: :string },
           buildingNumber: { type: :string },
           apartment: { type: :string },
@@ -102,6 +112,8 @@ RSpec.describe 'api/v1/addresses', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
+                 country: { type: :string },
+                 city: { type: :string },
                  street: { type: :string },
                  buildingNumber: { type: :string },
                  apartment: { type: :string },
