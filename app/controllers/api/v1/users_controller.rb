@@ -45,6 +45,24 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def change_password
+    @user = User.find(doorkeeper_token.resource_owner_id) rescue nil
+    if params[:old_password]
+      if @user.valid_password?(params[:old_password])
+        if params[:new_password]
+          @user.update!(password: params[:new_password])
+          render json: { success: true }
+        else
+          render(json: { error_message: 'New password was not provided!', error_code: 400 }, status: 400)
+        end
+      else
+        render(json: { error_message: 'Bad old password', error_code: 403 }, status: 403)
+      end
+    else
+      render(json: { error_message: 'Old password was not provided!', error_code: 400 }, status: 400)
+    end
+  end
+
   private
 
   def user_params

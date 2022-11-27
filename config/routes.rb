@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :journeys, except: :destroy
       get 'current_journey', to: 'journeys#current_journey'
       get 'current_user', to: 'users#current_user'
+      post 'change_password', to: 'users#change_password'
     end
   end
   # Defines the root path route ("/")

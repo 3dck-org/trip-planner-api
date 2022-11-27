@@ -95,4 +95,29 @@ RSpec.describe 'api/v1/users', type: :request do
       end
     end
   end
+
+  path '/api/v1/change_password' do
+    post('change current user password') do
+      consumes 'application/json'
+      produces 'application/json'
+      tags 'Users'
+
+      parameter name: :data, in: :body, schema: {
+        type: :object,
+        properties: {
+          old_password: { type: :string },
+          new_password: { type: :string }
+        },
+        required: ['old_password', 'new_password']
+      }
+
+      response(200, 'successful') do
+        schema type: :object,
+               properties: {
+                 success: { type: :string }
+               }
+        run_test!
+      end
+    end
+  end
 end
