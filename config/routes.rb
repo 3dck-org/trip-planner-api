@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get 'current_journey', to: 'journeys#current_journey'
       get 'current_user', to: 'users#current_user'
       post 'change_password', to: 'users#change_password'
+      put 'update_current', to: 'users#update_current'
     end
   end
   # Defines the root path route ("/")

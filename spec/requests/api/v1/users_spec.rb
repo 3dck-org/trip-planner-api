@@ -120,4 +120,40 @@ RSpec.describe 'api/v1/users', type: :request do
       end
     end
   end
+
+  path '/api/v1/update_current' do
+    put('update current user') do
+      consumes 'application/json'
+      produces 'application/json'
+      tags 'Users'
+
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          surname: { type: :string },
+          birthday: { type: :string, format: :date },
+          login: { type: :string },
+          image_url: { type: :string }
+        }
+      }
+
+      response(200, 'successful') do
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 name: { type: :string },
+                 surname: { type: :string },
+                 birthday: { type: :string, format: :date },
+                 login: { type: :string },
+                 email: { type: :string },
+                 created_at: { type: :string, format: :datetime },
+                 updated_at: { type: :string, format: :datetime },
+                 role_id: { type: :integer },
+                 image_url: { type: :string }
+               }
+        run_test!
+      end
+    end
+  end
 end

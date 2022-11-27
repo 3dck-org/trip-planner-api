@@ -35,6 +35,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update_current
+    @user = User.find(doorkeeper_token.resource_owner_id)
+
+    if @user.update!(user_update_params)
+      render json: @user
+    else
+      render json: { error_message: @user.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
+    end
+  end
+
   def current_user
     @user = User.find(doorkeeper_token.resource_owner_id) rescue nil
 
@@ -67,6 +77,10 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.permit(:email, :password, :name, :surname, :login, :birthday, :image_url)
+  end
+
+  def user_update_params
+    params.require(:user).permit(:name, :surname, :login, :birthday, :image_url)
   end
 
   def generate_refresh_token
