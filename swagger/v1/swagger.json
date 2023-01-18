@@ -346,6 +346,34 @@
                       "updated_at": {
                         "type": "string",
                         "format": "datetime"
+                      },
+                      "journey_place_infos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "journey_id": {
+                              "type": "integer"
+                            },
+                            "place_id": {
+                              "type": "integer"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "format": "datetime"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "format": "datetime"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -402,6 +430,34 @@
                     "updated_at": {
                       "type": "string",
                       "format": "datetime"
+                    },
+                    "journey_place_infos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "journey_id": {
+                            "type": "integer"
+                          },
+                          "place_id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -488,6 +544,34 @@
                     "updated_at": {
                       "type": "string",
                       "format": "datetime"
+                    },
+                    "journey_place_infos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "journey_id": {
+                            "type": "integer"
+                          },
+                          "place_id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -543,6 +627,34 @@
                     "updated_at": {
                       "type": "string",
                       "format": "datetime"
+                    },
+                    "journey_place_infos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "journey_id": {
+                            "type": "integer"
+                          },
+                          "place_id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -805,7 +917,100 @@
                           "type": "string"
                         }
                       }
+                    },
+                    "journey_place_infos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "journey_id": {
+                            "type": "integer"
+                          },
+                          "place_id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "datetime"
+                          }
+                        }
+                      }
                     }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/update_place_status": {
+      "put": {
+        "summary": "update status of a place in the journey",
+        "tags": [
+          "Journeys"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "journey_id": {
+                      "type": "integer"
+                    },
+                    "place_id": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "journey_id": {
+                    "type": "integer"
+                  },
+                  "place_id": {
+                    "type": "integer"
+                  },
+                  "status": {
+                    "type": "string"
                   }
                 }
               }

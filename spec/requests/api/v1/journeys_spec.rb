@@ -21,7 +21,21 @@ RSpec.describe 'api/v1/journeys', type: :request do
                    start_at: { type: :string, format: :datetime },
                    end_at: { type: :string, format: :datetime },
                    created_at: { type: :string, format: :datetime },
-                   updated_at: { type: :string, format: :datetime }
+                   updated_at: { type: :string, format: :datetime },
+                   journey_place_infos: {
+                     type: :array,
+                     items: {
+                       type: :object,
+                       properties: {
+                         id: { type: :integer },
+                         journey_id: { type: :integer },
+                         place_id: { type: :integer },
+                         status: { type: :string },
+                         created_at: { type: :string, format: :datetime },
+                         updated_at: { type: :string, format: :datetime }
+                       }
+                     }
+                   }
                  }
                }
         run_test!
@@ -53,7 +67,21 @@ RSpec.describe 'api/v1/journeys', type: :request do
                  start_at: { type: :string, format: :datetime },
                  end_at: { type: :string, format: :datetime },
                  created_at: { type: :string, format: :datetime },
-                 updated_at: { type: :string, format: :datetime }
+                 updated_at: { type: :string, format: :datetime },
+                 journey_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       journey_id: { type: :integer },
+                       place_id: { type: :integer },
+                       status: { type: :string },
+                       created_at: { type: :string, format: :datetime },
+                       updated_at: { type: :string, format: :datetime }
+                     }
+                   }
+                 }
                }
         run_test!
       end
@@ -80,7 +108,21 @@ RSpec.describe 'api/v1/journeys', type: :request do
                  start_at: { type: :string, format: :datetime },
                  end_at: { type: :string, format: :datetime },
                  created_at: { type: :string, format: :datetime },
-                 updated_at: { type: :string, format: :datetime }
+                 updated_at: { type: :string, format: :datetime },
+                 journey_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       journey_id: { type: :integer },
+                       place_id: { type: :integer },
+                       status: { type: :string },
+                       created_at: { type: :string, format: :datetime },
+                       updated_at: { type: :string, format: :datetime }
+                     }
+                   }
+                 }
                }
         run_test!
       end
@@ -114,7 +156,21 @@ RSpec.describe 'api/v1/journeys', type: :request do
                  start_at: { type: :string, format: :datetime },
                  end_at: { type: :string, format: :datetime },
                  created_at: { type: :string, format: :datetime },
-                 updated_at: { type: :string, format: :datetime }
+                 updated_at: { type: :string, format: :datetime },
+                 journey_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       journey_id: { type: :integer },
+                       place_id: { type: :integer },
+                       status: { type: :string },
+                       created_at: { type: :string, format: :datetime },
+                       updated_at: { type: :string, format: :datetime }
+                     }
+                   }
+                 }
                }
         run_test!
       end
@@ -222,7 +278,53 @@ RSpec.describe 'api/v1/journeys', type: :request do
                      role_id: { type: :integer },
                      image_url: { type: :string }
                    }
+                 },
+                 journey_place_infos: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       journey_id: { type: :integer },
+                       place_id: { type: :integer },
+                       status: { type: :string },
+                       created_at: { type: :string, format: :datetime },
+                       updated_at: { type: :string, format: :datetime }
+                     }
+                   }
                  }
+               }
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/update_place_status' do
+    put('update status of a place in the journey') do
+      produces 'application/json'
+      consumes "application/json"
+      tags 'Journeys'
+
+      parameter name: :journey_place_info, in: :body, schema: {
+        type: :object,
+        properties: {
+          journey_id: { type: :integer },
+          place_id: { type: :integer },
+          status: { type: :string }
+        }
+      }
+
+      response(200, 'successful') do
+        let(:id) { '123' }
+
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 journey_id: { type: :integer },
+                 place_id: { type: :integer },
+                 status: { type: :string },
+                 created_at: { type: :string, format: :datetime },
+                 updated_at: { type: :string, format: :datetime }
                }
         run_test!
       end

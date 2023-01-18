@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_27_140413) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_121327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_140413) do
   create_table "category_dictionaries_places", id: false, force: :cascade do |t|
     t.bigint "category_dictionary_id", null: false
     t.bigint "place_id", null: false
+  end
+
+  create_table "journey_place_infos", force: :cascade do |t|
+    t.bigint "journey_id", null: false
+    t.bigint "place_id", null: false
+    t.string "status", default: "inactive"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journey_id"], name: "index_journey_place_infos_on_journey_id"
+    t.index ["place_id"], name: "index_journey_place_infos_on_place_id"
   end
 
   create_table "journeys", force: :cascade do |t|
@@ -145,6 +155,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_140413) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "journey_place_infos", "journeys"
+  add_foreign_key "journey_place_infos", "places"
   add_foreign_key "journeys", "trips"
   add_foreign_key "journeys", "users"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"

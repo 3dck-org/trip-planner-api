@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'current_user', to: 'users#current_user'
       post 'change_password', to: 'users#change_password'
       put 'update_current', to: 'users#update_current'
+      put 'update_place_status', to: 'journeys#update_place_status'
     end
   end
   # Defines the root path route ("/")

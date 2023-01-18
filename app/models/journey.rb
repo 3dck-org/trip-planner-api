@@ -1,6 +1,7 @@
 class Journey < ApplicationRecord
   belongs_to :trip
   belongs_to :user
+  has_many :journey_place_infos
 
   validate :only_one_uncompleted, on: :create
 
