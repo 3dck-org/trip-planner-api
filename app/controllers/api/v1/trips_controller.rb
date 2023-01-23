@@ -4,8 +4,36 @@ class Api::V1::TripsController < ApplicationController
 
   # GET /api/v1/trips
   def index
+    options = {}
     if params[:favorite_only] == 'true'
-      @trips = Trip.where(id: UserFavoriteTrip.where(user_id: doorkeeper_token.resource_owner_id).distinct.pluck(:trip_id))
+      options[:id] = UserFavoriteTrip.where(user_id: doorkeeper_token.resource_owner_id).distinct.pluck(:trip_id)
+    end
+
+    if params[:category_names].present?
+      options[:id] = nil
+      filtered_category_names = params[:category_names].split(',').map { |name| name.downcase.gsub(' ', '_') }
+      place_ids = CategoryDictionary.where(name: filtered_category_names).map(&:places).flatten.uniq.pluck(:id)
+      if place_ids.present?
+        trip_ids = Place.where(id: place_ids).map(&:trips).flatten.uniq.pluck(:id)
+        if trip_ids.present?
+          append_options(options, :id, trip_ids.uniq)
+        end
+      end
+    end
+
+    if params[:x].present? && params[:y].present? && params[:radius].present?
+      current_location = Geokit::LatLng.new(params[:x], params[:y])
+      filtered_places = []
+      Trip.all.map(&:places).flatten.uniq.each do |place|
+        place_coords = "#{place.point.x},#{place.point.y}"
+        filtered_places << place if (current_location.distance_to(place_coords) * 1000) <= params[:radius].to_i
+      end
+      trip_ids = filtered_places.map(&:trips).flatten.uniq.pluck(:id)
+      append_options(options, :id, trip_ids)
+    end
+
+    if options.present?
+      @trips = Trip.where(options)
     else
       @trips = Trip.all
     end
@@ -65,6 +93,14 @@ class Api::V1::TripsController < ApplicationController
 
   private
 
+
+  def append_options(options, key, value)
+    if options[key]
+      options[key] = options[key] & value
+    else
+      options[key] = value
+    end
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_trip
     @trip = Trip.find(params[:id])

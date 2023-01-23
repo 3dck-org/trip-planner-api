@@ -9,6 +9,10 @@ RSpec.describe 'api/v1/trips', type: :request do
       tags 'Trips'
 
       parameter name: :favorite_only, in: :path, type: :string
+      parameter name: :category_names, in: :path, type: :string, description: 'Category names divided by `,`'
+      parameter name: :x, in: :path, type: :string
+      parameter name: :y, in: :path, type: :string
+      parameter name: :radius, in: :path, type: :integer
 
       response(200, 'successful') do
         schema type: :array,
