@@ -233,6 +233,7 @@ RSpec.describe 'api/v1/journeys', type: :request do
                                },
                                created_at: { type: :string, format: :datetime },
                                updated_at: { type: :string, format: :datetime },
+                               google_maps_url: { type: :string },
                                address: {
                                  type: :object,
                                  properties: {

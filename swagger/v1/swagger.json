@@ -823,6 +823,9 @@
                                     "type": "string",
                                     "format": "datetime"
                                   },
+                                  "google_maps_url": {
+                                    "type": "string"
+                                  },
                                   "address": {
                                     "type": "object",
                                     "properties": {
@@ -1820,6 +1823,9 @@
                                   "type": "string",
                                   "format": "datetime"
                                 },
+                                "google_maps_url": {
+                                  "type": "string"
+                                },
                                 "address": {
                                   "type": "object",
                                   "properties": {
@@ -1982,6 +1988,9 @@
                               "updated_at": {
                                 "type": "string",
                                 "format": "datetime"
+                              },
+                              "google_maps_url": {
+                                "type": "string"
                               },
                               "address": {
                                 "type": "object",
@@ -2192,6 +2201,9 @@
                                 "type": "string",
                                 "format": "datetime"
                               },
+                              "google_maps_url": {
+                                "type": "string"
+                              },
                               "address": {
                                 "type": "object",
                                 "properties": {
@@ -2353,6 +2365,9 @@
                               "updated_at": {
                                 "type": "string",
                                 "format": "datetime"
+                              },
+                              "google_maps_url": {
+                                "type": "string"
                               },
                               "address": {
                                 "type": "object",
