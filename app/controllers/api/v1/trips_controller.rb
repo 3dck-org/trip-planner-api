@@ -48,7 +48,7 @@ class Api::V1::TripsController < ApplicationController
   def show
     Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
     render json: @trip,
-           include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
+           include: [{ trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } }, :user],
            methods: [:favorite]
   end
 
@@ -93,7 +93,6 @@ class Api::V1::TripsController < ApplicationController
 
   private
 
-
   def append_options(options, key, value)
     if options[key]
       options[key] = options[key] & value
@@ -101,6 +100,7 @@ class Api::V1::TripsController < ApplicationController
       options[key] = value
     end
   end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_trip
     @trip = Trip.find(params[:id])

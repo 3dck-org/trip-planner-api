@@ -258,6 +258,21 @@ RSpec.describe 'api/v1/trips', type: :request do
                        }
                      }
                    }
+                 },
+                 user: {
+                   type: :object,
+                   properties: {
+                     id: { type: :integer },
+                     name: { type: :string },
+                     surname: { type: :string },
+                     birthday: { type: :string, format: :date },
+                     login: { type: :string },
+                     email: { type: :string },
+                     created_at: { type: :string, format: :datetime },
+                     updated_at: { type: :string, format: :datetime },
+                     role_id: { type: :integer },
+                     image_url: { type: :string }
+                   }
                  }
                }
         run_test!
