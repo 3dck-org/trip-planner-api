@@ -28,7 +28,7 @@ class Api::V1::JourneysController < ApplicationController
     end
     @journey.user_id = doorkeeper_token.resource_owner_id
 
-    if @journey.save
+    if @journey.save!
       @journey.trip.places.each do |p|
         JourneyPlaceInfo.create!(journey_id: @journey.id, place_id: p.id)
       end
@@ -40,7 +40,7 @@ class Api::V1::JourneysController < ApplicationController
 
   # PATCH/PUT /journeys/1
   def update
-    if @journey.update(journey_params)
+    if @journey.update!(journey_params)
       render json: @journey, include: :journey_place_infos
     else
       render json: { error_message: @journey.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
