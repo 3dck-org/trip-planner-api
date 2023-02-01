@@ -17,7 +17,7 @@ class Api::V1::JourneysController < ApplicationController
   def current_journey
     @journey = Journey.find_by(user_id: doorkeeper_token.resource_owner_id, completed: false)
 
-    render json: @journey, include: [{ trip: { include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } } } }, :user, :journey_place_infos]
+    render json: @journey, include: [{ trip: { include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } }, methods: [:favorite] } }, :user, :journey_place_infos]
   end
 
   # POST /journeys
