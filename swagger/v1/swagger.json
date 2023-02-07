@@ -1705,6 +1705,14 @@
             }
           },
           {
+            "name": "city",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x",
             "in": "path",
             "required": true,
@@ -2510,6 +2518,48 @@
         "responses": {
           "200": {
             "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/filter_data": {
+      "get": {
+        "summary": "filter data",
+        "tags": [
+          "Trips"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "cities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

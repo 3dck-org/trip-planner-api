@@ -10,6 +10,7 @@ RSpec.describe 'api/v1/trips', type: :request do
 
       parameter name: :favorite_only, in: :path, type: :string
       parameter name: :category_names, in: :path, type: :string, description: 'Category names divided by `,`'
+      parameter name: :city, in: :path, type: :string
       parameter name: :x, in: :path, type: :string
       parameter name: :y, in: :path, type: :string
       parameter name: :radius, in: :path, type: :integer
@@ -377,6 +378,38 @@ RSpec.describe 'api/v1/trips', type: :request do
 
       response(200, 'successful') do
         let(:id) { '123' }
+
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/filter_data' do
+    get('filter data') do
+      produces 'application/json'
+      tags 'Trips'
+
+      response(200, 'successful') do
+        schema type: :object,
+               properties: {
+                 categories: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       code: { type: :string },
+                       name: { type: :string }
+                     }
+                   }
+                 },
+                 cities: {
+                   type: :array,
+                   items: {
+                     type: :string
+                   }
+                 }
+               }
+
 
         run_test!
       end

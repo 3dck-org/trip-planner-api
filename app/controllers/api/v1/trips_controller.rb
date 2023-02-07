@@ -9,6 +9,12 @@ class Api::V1::TripsController < ApplicationController
       options[:id] = UserFavoriteTrip.where(user_id: doorkeeper_token.resource_owner_id).distinct.pluck(:trip_id)
     end
 
+    if params[:city].present?
+      address_ids = Address.where(city: params[:city]).ids
+      trip_ids = Place.where(address_id: address_ids).map(&:trips).flatten.uniq.pluck(:id)
+      append_options(options, :id, trip_ids)
+    end
+
     if params[:category_names].present?
       options[:id] = nil
       filtered_category_names = params[:category_names].split(',').map { |name| name.downcase.gsub(' ', '_') }
@@ -50,6 +56,16 @@ class Api::V1::TripsController < ApplicationController
     render json: @trip,
            include: [{ trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } }, :user],
            methods: [:favorite]
+  end
+
+  def filter_data
+    categories_data = []
+    categories = CategoryDictionary.where(id: Place.all.map(&:category_dictionaries).flatten.uniq.pluck(:id))
+    categories.each do |category|
+      categories_data << { code: category.name, name: category.name.gsub('_', ' ').capitalize }
+    end
+    cities = Address.distinct.pluck(:city).compact
+    render json: { categories: categories_data, cities: cities }
   end
 
   # POST /api/v1/trips
