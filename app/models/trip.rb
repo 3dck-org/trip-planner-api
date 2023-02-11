@@ -6,7 +6,7 @@ class Trip < ApplicationRecord
   has_many :trip_place_infos
   has_many :places, through: :trip_place_infos
   has_many :journeys
-  has_many :users, through: :user_favorite_trips
+  has_many :user_favorite_trips
 
   def favorite
     UserFavoriteTrip.where(user_id: current_user.id, trip_id: id).present?
