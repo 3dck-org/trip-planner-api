@@ -44,6 +44,12 @@ class Api::V1::TripsController < ApplicationController
       @trips = Trip.all
     end
 
+    # Always add current journey trip to the result
+    current_journey = Journey.find_by(completed: false, user_id: doorkeeper_token.resource_owner_id)
+    if current_journey && !@trips.include?(current_journey.trip)
+      @trips = @trips + Trip.where(id: current_journey.trip_id)
+    end
+
     Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
     render json: @trips,
            include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
