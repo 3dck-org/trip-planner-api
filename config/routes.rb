@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :addresses
       resources :places
       resources :trip_place_infos
+      resources :ratings, only: :create
 
       resources :journeys, except: :destroy
       get 'current_journey', to: 'journeys#current_journey'

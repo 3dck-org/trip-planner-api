@@ -11,4 +11,8 @@ class Trip < ApplicationRecord
   def favorite
     UserFavoriteTrip.where(user_id: current_user.id, trip_id: id).present?
   end
+
+  def average_rating
+    Rating.where(trip_id: id).average(:grade)
+  end
 end

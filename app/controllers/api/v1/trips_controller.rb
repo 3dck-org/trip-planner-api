@@ -53,7 +53,7 @@ class Api::V1::TripsController < ApplicationController
     Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
     render json: @trips,
            include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
-           methods: [:favorite]
+           methods: [:favorite, :average_rating]
   end
 
   # GET /api/v1/trips/1
@@ -61,7 +61,7 @@ class Api::V1::TripsController < ApplicationController
     Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
     render json: @trip,
            include: [{ trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } }, :user],
-           methods: [:favorite]
+           methods: [:favorite, :average_rating]
   end
 
   def filter_data
@@ -81,7 +81,7 @@ class Api::V1::TripsController < ApplicationController
     if @trip.save
       render json: @trip, status: :created,
              include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
-             methods: [:favorite]
+             methods: [:favorite, :average_rating]
     else
       render json: { error_message: @trip.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end
@@ -102,7 +102,7 @@ class Api::V1::TripsController < ApplicationController
     if @trip.update(trip_params.except(:favorite))
       render json: @trip,
              include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
-             methods: [:favorite]
+             methods: [:favorite, :average_rating]
     else
       render json: { error_message: @trip.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
     end

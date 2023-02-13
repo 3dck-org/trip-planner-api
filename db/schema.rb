@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_18_121327) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_141629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,6 +97,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_121327) do
     t.index ["address_id"], name: "index_places_on_address_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_ratings_on_trip_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -161,6 +171,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_121327) do
   add_foreign_key "journeys", "users"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "places", "addresses"
+  add_foreign_key "ratings", "trips"
+  add_foreign_key "ratings", "users"
   add_foreign_key "trip_place_infos", "places"
   add_foreign_key "trip_place_infos", "trips"
   add_foreign_key "trips", "users"

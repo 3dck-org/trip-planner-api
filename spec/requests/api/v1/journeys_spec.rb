@@ -206,6 +206,7 @@ RSpec.describe 'api/v1/journeys', type: :request do
                      duration: { type: :integer },
                      image_url: { type: :string },
                      favorite: { type: :string },
+                     average_rating: { type: :string },
                      created_at: { type: :string, format: :datetime },
                      updated_at: { type: :string, format: :datetime },
                      trip_place_infos: {
