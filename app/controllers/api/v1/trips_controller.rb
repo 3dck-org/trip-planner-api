@@ -52,7 +52,7 @@ class Api::V1::TripsController < ApplicationController
 
     Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
     render json: @trips,
-           include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
+           include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } },
            methods: [:favorite, :average_rating]
   end
 
@@ -60,7 +60,7 @@ class Api::V1::TripsController < ApplicationController
   def show
     Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
     render json: @trip,
-           include: [{ trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } }, :user],
+           include: [{ trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } }, :user],
            methods: [:favorite, :average_rating]
   end
 
@@ -76,11 +76,46 @@ class Api::V1::TripsController < ApplicationController
 
   # POST /api/v1/trips
   def create
-    @trip = Trip.new(trip_params)
-    Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
-    if @trip.save
+    @trip = Trip.new(trip_params.except(:places))
+    @trip.user_id = doorkeeper_token.resource_owner_id
+    if @trip.save!
+      params[:trip][:places].each_with_index do |place, index|
+        address = Address.create!(street: place[:address])
+
+        new_place = Place.new
+        new_place.address_id = address.id
+        new_place.name = place[:name]
+        new_place.description = place[:description]
+        new_place.google_maps_url = place[:google_maps_url]
+        begin
+          coords = place[:point].split(',')
+          point = ActiveRecord::Point.new(coords[0], coords[1])
+          new_place.point = point
+        rescue StandardError => e
+          render json: "Erorr with point generation for coords: #{place[:point]}. #{e.message}",
+                 status: :unprocessable_entity
+        end
+
+        category_names = place[:category_names]
+        if category_names
+          category_names.each do |name|
+            category = CategoryDictionary.find_by(name: name)
+            if category
+              new_place.category_dictionaries << category
+            end
+          end
+        end
+
+        if new_place.save!
+          TripPlaceInfo.create!(place_id: new_place.id, trip_id: @trip.id, order: index + 1, comment: place[:description])
+        else
+          render json: { error_message: new_place.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
+        end
+      end
+
+      Trip.current_user = User.find(doorkeeper_token.resource_owner_id)
       render json: @trip, status: :created,
-             include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
+             include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } },
              methods: [:favorite, :average_rating]
     else
       render json: { error_message: @trip.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
@@ -101,7 +136,7 @@ class Api::V1::TripsController < ApplicationController
 
     if @trip.update(trip_params.except(:favorite))
       render json: @trip,
-             include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries], methods: :google_maps_url } } } },
+             include: { trip_place_infos: { include: { place: { include: [:address, :category_dictionaries] } } } },
              methods: [:favorite, :average_rating]
     else
       render json: { error_message: @trip.errors.full_messages, error_code: 422 }, status: :unprocessable_entity
@@ -130,6 +165,6 @@ class Api::V1::TripsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trip_params
-    params.require(:trip).permit(:name, :description, :distance, :duration, :user_id, :image_url, :favorite)
+    params.require(:trip).permit(:name, :description, :distance, :duration, :user_id, :image_url, :favorite, :places)
   end
 end

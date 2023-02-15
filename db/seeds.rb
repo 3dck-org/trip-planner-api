@@ -17,3 +17,9 @@ category_names = %w(accounting airport amusement_park aquarium art_gallery atm b
 category_names.each do |name|
   CategoryDictionary.where(name: name).first_or_create
 end
+
+Place.where(google_maps_url: nil).each do |place|
+  if place.point
+    place.update!(google_maps_url: "https://www.google.com/maps/place/#{place.point.x},#{place.point.y}")
+  end
+end
