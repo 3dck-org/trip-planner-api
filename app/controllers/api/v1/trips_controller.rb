@@ -4,6 +4,8 @@ class Api::V1::TripsController < ApplicationController
 
   # GET /api/v1/trips
   def index
+    @trips = Trip.all
+
     options = {}
     if params[:favorite_only] == 'true'
       options[:id] = UserFavoriteTrip.where(user_id: doorkeeper_token.resource_owner_id).distinct.pluck(:trip_id)
@@ -12,6 +14,7 @@ class Api::V1::TripsController < ApplicationController
     if params[:city].present?
       address_ids = Address.where(city: params[:city]).ids
       trip_ids = Place.where(address_id: address_ids).map(&:trips).flatten.uniq.pluck(:id)
+      @trips = Trip.where(id: trip_ids)
       append_options(options, :id, trip_ids)
     end
 
@@ -39,9 +42,7 @@ class Api::V1::TripsController < ApplicationController
     end
 
     if options.present?
-      @trips = Trip.where(options)
-    else
-      @trips = Trip.all
+      @trips = @trips.where(options)
     end
 
     # Always add current journey trip to the result

@@ -3,10 +3,10 @@ class Trip < ApplicationRecord
 
   belongs_to :user
 
-  has_many :trip_place_infos
-  has_many :places, through: :trip_place_infos
-  has_many :journeys
-  has_many :user_favorite_trips
+  has_many :trip_place_infos, dependent: :destroy
+  has_many :places, through: :trip_place_infos, dependent: :destroy
+  has_many :journeys, dependent: :destroy
+  has_many :user_favorite_trips, dependent: :destroy
 
   def favorite
     UserFavoriteTrip.where(user_id: current_user.id, trip_id: id).present?
