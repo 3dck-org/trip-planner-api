@@ -80,7 +80,11 @@ class Api::V1::TripsController < ApplicationController
     @trip.user_id = doorkeeper_token.resource_owner_id
     if @trip.save!
       params[:trip][:places].each_with_index do |place, index|
-        address = Address.create!(street: place[:address])
+        address = Address.new
+        address.country = 'Poland'
+        address.city = place[:city]
+        address.street = place[:street]
+        address.save!
 
         new_place = Place.new
         new_place.address_id = address.id
