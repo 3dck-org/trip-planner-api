@@ -1,7 +1,7 @@
 class Journey < ApplicationRecord
   belongs_to :trip
   belongs_to :user
-  has_many :journey_place_infos
+  has_many :journey_place_infos, dependent: :destroy
 
   validate :only_one_uncompleted, on: :create
 
