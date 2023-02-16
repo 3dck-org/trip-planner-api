@@ -67,7 +67,7 @@ class Api::V1::TripsController < ApplicationController
 
   def filter_data
     categories_data = []
-    categories = CategoryDictionary.where(id: Place.all.map(&:category_dictionaries).flatten.uniq.pluck(:id))
+    categories = Place.all.map(&:category_dictionaries).flatten.uniq
     categories.each do |category|
       categories_data << { code: category.name, name: category.name.gsub('_', ' ').capitalize }
     end
