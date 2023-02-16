@@ -71,7 +71,7 @@ class Api::V1::TripsController < ApplicationController
     categories.each do |category|
       categories_data << { code: category.name, name: category.name.gsub('_', ' ').capitalize }
     end
-    cities = Address.distinct.pluck(:city).compact
+    cities = Address.where(id: Place.all.distinct.pluck(:address_id)).distinct.pluck(:city).compact
     render json: { categories: categories_data, cities: cities }
   end
 
